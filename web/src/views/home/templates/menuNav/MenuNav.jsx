@@ -8,97 +8,66 @@ import { faUserAlt, faCog, faChartPie, faListAlt, faHistory, faIdCard } from '@f
 import { Link } from 'react-router-dom';
 
 // styled components
-import Modules from './MenuNav.js';
-const { Aside, Li, Ul } = Modules;
+import { Aside, Ul, RowBody } from './MenuNav.js';
+// const { Aside, Ul, RowBody } = Modules;
+
+// components
+import NavBarItems from '../../../../components/navBarItems/index.jsx';
+import NavBarList from '../../../../components/navBarList/index.jsx';
 
 export default function MenuNav(props) {
 
     return (
         <Aside>
-            <nav>
-                <Ul>
-                    {/* Dashboard Links */}
-                    <Li>
-                        {/* Chart Pie icon */}
-                        <FontAwesomeIcon
-                            icon={faChartPie}
-                            style={{ marginRight: '10px' }}
-                        />
+            <Ul>
+                <NavBarItems
+                    icon={'faChartPie'}
+                    label={'Dashboard'}
+                    link={'/'}
+                />
 
-                        {/* Dashboard Link */}
-                        <Link
-                            to="/"
-                            style={{ textDecoration: 'none', color: '#fff' }}
-                        >
-                            Dashboard
-                        </Link>
-                    </Li>
+                <NavBarList
+                    label={'Colaboradores'}
+                    icon={'faIdCard'}
+                >
+                    <NavBarItems
+                        icon={'faIdCard'}
+                        label={'cadastro 2'}
+                        link={'/cadastroFuncionario'}
+                    />
+                    <NavBarItems
+                        icon={'faIdCard'}
+                        label={'cadastro 2'}
+                        link={'/cadastroFuncionario'}
+                    />
+                </NavBarList>
 
-                    <Li>
-                        <FontAwesomeIcon
-                            icon={faIdCard}
-                            style={{ marginRight: '10px' }}
-                        />
+                <NavBarItems
+                    icon={'faListAlt'}
+                    label={'Colaboradores'}
+                />
 
-                        <Link
-                            to="/cadastroFuncionario"
-                            style={{ textDecoration: 'none', color: '#fff' }}>
-                            Cadastrar Colaborador
-                        </Link>
-                    </Li>
-
-                    <Li>
-                        <FontAwesomeIcon
-                            icon={faListAlt}
-                            style={{ marginRight: '10px' }}
-                        />
-
-                        <Link
-                            to="/listaDeFuncionarios"
-                            style={{ textDecoration: 'none', color: '#fff' }}>
-                            Lista de Colaboradores
-                        </Link>
-                    </Li>
-
-                    <Li>
-                        <FontAwesomeIcon
-                            icon={faHistory}
-                            style={{ marginRight: '10px' }}
-                        />
-
-                        <Link
-                            to="/historicoDeViolacoes"
-                            style={{ textDecoration: 'none', color: '#fff' }}>
-                            Histórico de Violações
-                        </Link>
-                    </Li>
-
-                    <Li>
-                        <FontAwesomeIcon
-                            icon={faCog}
-                            style={{ marginRight: '10px' }}
-                        />
-                        <Link
-                            to="/"
-                            style={{ textDecoration: 'none', color: '#fff' }}>
-                            Configurações
-                        </Link>
-                    </Li>
-
-                    <Li>
-                        <FontAwesomeIcon
-                            icon={faUserAlt}
-                            style={{ marginRight: '10px' }}
-                        />
-                        <Link
-                            to="/"
-                            style={{ textDecoration: 'none', color: '#fff' }}>
-                            Usuário
-                        </Link>
-                    </Li>
-                </Ul>
-            </nav>
+                <NavBarItems
+                    icon={'faListAlt'}
+                    label={'Lista de Colaboradores'}
+                    link={'/listaDeFuncionarios'}
+                />
+                <NavBarItems
+                    icon={'faHistory'}
+                    label={'Histórico de Violações'}
+                    link={'/historicoDeViolacoes'}
+                />
+                <NavBarItems
+                    icon={'faCog'}
+                    label={'Configurações'}
+                    link={'/'}
+                />
+                <NavBarItems
+                    icon={'faUserAlt'}
+                    label={'Usuário'}
+                    link={'/'}
+                />
+            </Ul>
         </Aside>
     )
 }
-
