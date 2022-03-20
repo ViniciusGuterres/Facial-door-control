@@ -40,10 +40,15 @@ export default function NavBarItems(props) {
                 {props.label}
             </Link>
         )
-    }
+    };
+
+    const isItemSelected = props.menuListSelected[props.index];
 
     return (
-        <Li>
+        <Li
+            isItemSelected={isItemSelected}
+            onClick={() => props.setSelectedMenuItem(props.index)}
+        >
             <FontAwesomeIcon
                 icon={setItemIcon()}
                 style={{ marginRight: '10px' }}

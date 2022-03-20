@@ -33,7 +33,9 @@ export default function Home() {
                     {/* Toggle Menu nav */}
                     {isCollapsed ? <MenuNav /> : null}
 
-                    <Main>
+                    <Main
+                        menuIsCollapsed={isCollapsed}
+                    >
                         <Routes />
                     </Main>
                 </ContainerMain>

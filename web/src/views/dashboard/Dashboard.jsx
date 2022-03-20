@@ -72,7 +72,7 @@ export default class Dashboard extends React.Component {
                         themeColor={'#c91010c7'} />
                 </MainContainerCards>
 
-                <ContainerBarChart>
+                {/* <ContainerBarChart>
                     <div
                         style={{
                             height: '20%',
@@ -106,10 +106,10 @@ export default class Dashboard extends React.Component {
                             ]
                         }
                     />
-                </ContainerBarChart>
+                </ContainerBarChart> */}
 
                 {/* Donut and line chats */}
-                <div
+                {/* <div
                     style={{ display: 'flex', width: '100%', height: '350px', gap: '20px' }}
                 >
                     <ContainerDonutChart>
@@ -174,14 +174,13 @@ export default class Dashboard extends React.Component {
                             }
                         />
                     </ContainerLineChart>
-                </div>
+                </div> */}
             </div>
         )
     }
 }
 
 function InfoCards(props) {
-
     return (
         <Card>
             <div

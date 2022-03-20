@@ -7,7 +7,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     color: white;
-    margin: 10px;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: ${props => props.isMenuListSelected ? '#303030' : ''};
 `;
 
 export const Title = styled.div`

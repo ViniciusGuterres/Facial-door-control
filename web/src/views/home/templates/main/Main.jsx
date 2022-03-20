@@ -6,7 +6,7 @@ export default function Main(props) {
             background: '#F8F9FC',
             minHeight: '86vh',
             padding: '30px',
-            width: '100%',
+            width: props.isMenuCollapsed ? 'calc(100% - 350px)' : '100%',
         }}>
             {props.children}
         </main>
