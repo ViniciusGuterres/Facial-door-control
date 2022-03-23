@@ -5,7 +5,7 @@ import styledComponents from './Dashboard';
 
 // FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVirus } from '@fortawesome/free-solid-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import ApexChart from "../../components/ApexChart";
@@ -54,10 +54,12 @@ export default class Dashboard extends React.Component {
             <div>
                 <MainContainerCards>
                     <InfoCards
-                        title={'Casos de Covid'}
-                        data={covidCasesAmount}
-                        icon={faVirus}
-                        themeColor={'#34951c'} />
+                        title={'Acessos'}
+                        data={20}
+                        icon={faCamera}
+                        themeColor={'black'}
+                        prefix={'dia'} 
+                    />
 
                     <InfoCards
                         title={'Funcionários Cadastrados'}
@@ -185,6 +187,42 @@ function InfoCards(props) {
         <Card>
             <div
                 style={{
+                    width: '100%',
+                    display: 'flex',
+                    
+                }}
+            >
+            <FontAwesomeIcon
+                style={{
+                    marginTop: '10px',
+                    fontSize: '35px',
+                    color: props.themeColor || ''
+                }}
+                icon={props.icon || ''}
+            />
+            </div>
+            
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: 'column',
+                    height: '100%',
+                    width: '100%',
+                }}
+            >
+                <CardTitle>{props.title}</CardTitle>
+                <span
+                    style={{
+                        color: '#1e1e1e',
+                        fontSize: '30px',
+                        fontWeight: '900'
+                    }}
+                >{props.data}/{props.prefix}</span>
+            </div>
+
+
+            {/* <div
+                style={{
                     display: "flex",
                     flexDirection: 'column',
                     height: '100%',
@@ -193,16 +231,9 @@ function InfoCards(props) {
             >
                 <CardTitle>{props.title || ''}</CardTitle>
                 <span style={{ fontSize: '13px' }}>{props.data || 0}</span>
-            </div>
+            </div> */}
 
-            <FontAwesomeIcon
-                style={{
-                    marginTop: '10px',
-                    fontSize: '25px',
-                    color: props.themeColor || ''
-                }}
-                icon={props.icon || ''}
-            />
+
         </Card>
     )
 }

@@ -7,14 +7,15 @@ const MainContainerCards = styled.div`
     gap: 20px;
 `;
 const Card = styled.div`
-    height: 100%;
-    width: 33%;
-    min-width: 280px;
+    width: 25%;
+    height: 150px;
     background-color: #fff;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
-    border-radius: 50px;
+    border-radius: 20px;
     display: flex;
-    padding: 15px;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 20px;
 `;
 
 const CardTitle = styled.span`
