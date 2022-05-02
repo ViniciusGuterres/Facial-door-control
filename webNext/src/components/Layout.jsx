@@ -2,18 +2,25 @@ import React from "react";
 
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faBell, faHome, faHistory } from "@fortawesome/free-solid-svg-icons";
 
-function Layout() {
+function Layout(props) {
 
     return (
-        <Header/>
+        <div>
+            <Header />
+
+            <div className="flex">
+                <NavMenu />
+                {props.children}
+            </div>
+        </div>
     )
 }
 
 function Header() {
     return (
-        <nav className="flex justify-between items-center flex-wrap bg-gray-800 p-4">
+        <nav className="flex justify-between items-center flex-wrap bg-gray-800 p-4 h-14">
             <div className="flex items-center flex-shrink-0 mr-6 text-white">
                 <FontAwesomeIcon
                     className="mr-2 text-xl"
@@ -63,16 +70,51 @@ function Header() {
                 </div>
 
                 {/* User name */}
-                <h1 className=''>Vinicius C. Guterres</h1>
+                <h1>Vinicius C. Guterres</h1>
 
                 {/* User profile img */}
                 <img
-                    class="inline object-cover cursor-pointer w-12 h-12 mr-2 rounded-full"
+                    class="inline object-cover cursor-pointer w-9 h-9 mr-2 rounded-full"
                     src="https://www.lego.com/cdn/cs/set/assets/blt13e6e2a178c38704/Spiderman-Sidekick-Tall-1.jpg?fit=crop&format=jpg&quality=80&width=800&height=600&dpr=1"
                     alt="Profile image"
                 />
             </div>
         </nav>
+    )
+}
+
+function NavMenu() {
+    return (
+        <div className="bg-gray-900 w-56 text-white">
+            <ul className="menu bg-base-100 p-5 rounded-box flex flex-col gap-10">
+                <li className="h-10 flex items-center bg-indigo-800 ease-in duration-200 rounded-xl p-5 cursor-pointer">
+                    <FontAwesomeIcon
+                        className="mr-3"
+                        icon={faHome}
+                    />
+
+                    Home
+                </li>
+
+                <li className="h-10 flex items-center cursor-pointer ease-in duration-200 hover:bg-indigo-800">
+                    <FontAwesomeIcon
+                        className="mr-3"
+                        icon={faHome}
+                    />
+
+                    Cadastro de usuário
+                </li>
+
+                <li className="h-10 flex items-center cursor-pointer hover:text-red ">
+                    <FontAwesomeIcon
+                        className="mr-3"
+                        icon={faHistory}
+                    />
+
+                    Histórico
+                </li>
+            </ul>
+        </div>
     )
 }
 
