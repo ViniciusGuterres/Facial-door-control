@@ -19,4 +19,8 @@
 
 	Atualização = 06/05/2022:
 		conexão com servidor para salvar as imagens de cadastros e tentativas de acesso.
+
+	Atualização = 08/05/2022:
+		Adcionado novas opções como exclusão de cadastro, atualização de banco local e uma opção
+		de download de antigas tentativas salvas no servidor.
 #------------------------------------------------------------------------------------------------------------------------------#
