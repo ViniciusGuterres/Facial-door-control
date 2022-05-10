@@ -6,7 +6,7 @@ from menu import main
 import PySimpleGUI as sg
 
 #servidor
-address = 'ip'
+address = '192.168.5.102'
 username = 'face'
 password = 'faceid'
 
@@ -14,7 +14,7 @@ def cadastraRosto():
     sg.theme('DarkBlack')
     dados = [
         [sg.Text('Digite seu nome'), sg.Input(key='nome')],
-        [sg.Button('Ok')]
+        [sg.Button('Excluir'), sg.Button('Seguir')]
     ]
 
     window = sg.Window('Menu', dados, element_justification='c')
@@ -25,7 +25,23 @@ def cadastraRosto():
         main()
         os._exit(0)
     
-    elif e == 'Ok':
+    elif e == 'Excluir':
+        try:
+            window.close()
+            cad = 'banco/'+ nome +'.jpg'
+            os.remove(cad)
+            with sf.Connection(address, username=username, password=password) as sftp:
+                with sftp.cd('/home/face/face_id/banco'):
+                    sftp.remove(nome)
+            sg.popup_ok('Cadastro removido')
+            main()
+            os._exit(0)
+        except:
+            sg.popup_ok('Cadastro não localizado')
+            cadastraRosto()
+            os._exit(0)
+
+    elif e == 'Seguir':
         window.close()
 
     faceCascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_default.xml")
@@ -66,4 +82,3 @@ def cadastraRosto():
 
     cv2.destroyAllWindows()
     main()
-cadastraRosto()

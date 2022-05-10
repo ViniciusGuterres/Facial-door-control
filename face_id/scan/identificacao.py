@@ -1,4 +1,3 @@
-from email.headerregistry import Address
 import os
 import cv2
 import imutils
@@ -19,7 +18,7 @@ beauty_score_and_emotion_recognition=""
 faceCascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_default.xml")
 
 #servidor
-address = 'ip'
+address = '192.168.5.102'
 username = 'face'
 password = 'faceid'
 
@@ -43,26 +42,37 @@ def verifica(app):
         sg.popup_ok('O campo nome precisa ser preenchido!')
         window.close()
         verifica(app_)
+        os._exit(0)
 
     elif e == 'Ok':
         window.close()
 
-    webcam = cv2.VideoCapture(0)
-    _, img = webcam.read()
-    verifica = str(datetime.now())
-    cv2.imwrite('verifica/'+ verifica +'.jpg', img) 
-
-    img1 = "banco/" + nome + ".jpg"
-    img2 = "verifica/"+ verifica +".jpg"
-    cmp_ = app.compare.get(image_file1=img1,image_file2=img2)
-    confidence = cmp_.confidence
+ #----------------------------------------------------------------------------------------------------------------#
     try:
+        img1 = "banco/" + nome + ".jpg"
+        test = open(img1)
+        test.close()
+        webcam = cv2.VideoCapture(0)
+        _, img = webcam.read()
+        verifica = str(datetime.now())
+        cv2.imwrite('verifica/'+ verifica +'.jpg', img) 
+
+        img2 = "verifica/"+ verifica +".jpg"
+        cmp_ = app.compare.get(image_file1=img1,image_file2=img2)
+        confidence = cmp_.confidence
+
         with sf.Connection(address, username=username, password=password) as sftp:
             with sftp.cd('/home/face/face_id/tentativa'):             
                 sftp.put(img2)
-    except:
-        sg.popup_ok('Falha na conexão com o servidor')
 
+    except cv2.error:
+        sg.popup_ok('Verifique a conexão com a câmera')
+        main()
+        os._exit(0)    
+
+    except Exception:
+        sg.popup_ok('Falha na conexão com o servidor')
+    
     faceCascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_default.xml")
     while True:
         img = cv2.imread(img2)
@@ -79,6 +89,7 @@ def verifica(app):
                 sg.popup_auto_close('Mais de um rosto detectado')
         
         cv2.imshow("Face verificada", img)
+
         if confidence > 80:
             sg.popup_ok('Acesso autorizado')
             cv2.destroyAllWindows()
@@ -111,5 +122,7 @@ if __name__ == '__main__':
     except exceptions.BaseFacePPError as e:
         sg.popup_ok('Erro')
         verifica(app_)
+        os._exit(0)
 
-    cv2.destroyAllWindows() 
+    cv2.destroyAllWindows()
+    os._exit(0)
