@@ -115,4 +115,4 @@ function NavMenu() {
     )
 }
 
-export default Layout
+export default Layout;
