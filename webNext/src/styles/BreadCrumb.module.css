@@ -1,0 +1,15 @@
+.mainContainer {
+    /* background-color: red; */
+    height: 60px;
+    width: 500px;
+    margin: 20px;
+    display: flex;
+    padding-left: 20px;
+    -webkit-box-shadow: 1px 5px 16px 4px rgba(0,0,0,0.45); 
+    box-shadow: 1px 5px 16px 4px rgba(0,0,0,0.20);
+}
+
+.contentContainer {
+    display: flex;
+    align-items: center;
+}

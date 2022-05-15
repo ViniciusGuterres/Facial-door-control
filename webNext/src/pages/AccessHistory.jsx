@@ -1,4 +1,5 @@
 import { React, useMemo } from "react";
+import BreadCrumb from "../components/BreadCrumb";
 
 // Components
 import GenericTable from "../components/GenericTable";
@@ -19,11 +20,11 @@ export default function AccessHistory() {
                         accessor: "hour"
                     },
                     {
-                        Header: "Setor",
+                        Header: "Colaborador",
                         accessor: "department"
                     },
                     {
-                        Header: "Violação",
+                        Header: "Acesso autorizado",
                         accessor: "maskIcon"
                     }
                 ]
@@ -34,12 +35,17 @@ export default function AccessHistory() {
 
     return (
         <Layout>
-            Historico de acessos
+            <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+                <BreadCrumb
+                    name='Histórico de acessos'
+                    icon='faHistory'
+                />
 
-            <GenericTable
-                columns={columns}
-                data={[]}
-            />
+                <GenericTable
+                    columns={columns}
+                    data={[]}
+                />
+            </div>
         </Layout>
     )
 }
