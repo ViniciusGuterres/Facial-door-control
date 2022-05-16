@@ -1,11 +1,28 @@
-import { React, useMemo } from "react";
+import { React, useMemo, useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
+
+// AXIOS api
+import { getAllAccessData } from '../javascriptTemp/api';
 
 // Components
 import GenericTable from "../components/GenericTable";
 import Layout from '../components/Layout';
 
 export default function AccessHistory() {
+    const [accessdata, setAccessData] = useState([]);
+
+    // Geting all access and set at the tableDatas
+    useEffect(() => {
+        getAllAccessHistory();
+
+    }, [accessdata]);
+
+    function getAllAccessHistory() {
+        getAllAccessData('http://localhost:3010/AccessHistory')
+        .then(res => setAccessData(res))
+    }
+
+    console.log('accessdata::', accessdata)
     const columns = useMemo(
         () => [
             {
@@ -13,19 +30,19 @@ export default function AccessHistory() {
                 columns: [
                     {
                         Header: "Data",
-                        accessor: "date"
+                        accessor: "df"
                     },
                     {
                         Header: "hora",
-                        accessor: "hour"
+                        accessor: "data"
                     },
                     {
                         Header: "Colaborador",
-                        accessor: "department"
+                        accessor: "colaborador_nome"
                     },
                     {
                         Header: "Acesso autorizado",
-                        accessor: "maskIcon"
+                        accessor: "acesso_autorizado"
                     }
                 ]
             }
@@ -35,7 +52,7 @@ export default function AccessHistory() {
 
     return (
         <Layout>
-            <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <BreadCrumb
                     name='Histórico de acessos'
                     icon='faHistory'
@@ -43,7 +60,7 @@ export default function AccessHistory() {
 
                 <GenericTable
                     columns={columns}
-                    data={[]}
+                    data={accessdata}
                 />
             </div>
         </Layout>
