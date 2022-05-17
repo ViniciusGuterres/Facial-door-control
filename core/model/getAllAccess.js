@@ -25,7 +25,15 @@ exports.data = function getAllAccess() {
     };
 
     const executeQuery = () => {
-        const query = `SELECT * FROM acessos`;
+        const query = `
+            SELECT 
+                id,
+                colaborador_nome as collaborator_name,
+                data as date,
+                acesso_autorizado as authorized_access
+            FROM 
+                acessos;
+        `;
 
         const succesful = (data) => {
             db.end();

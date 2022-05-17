@@ -1,5 +1,5 @@
 import { React, useMemo, useEffect, useState } from "react";
-import BreadCrumb from "../components/BreadCrumb";
+
 
 // AXIOS api
 import { getAllAccessData } from '../javascriptTemp/api';
@@ -7,42 +7,89 @@ import { getAllAccessData } from '../javascriptTemp/api';
 // Components
 import GenericTable from "../components/GenericTable";
 import Layout from '../components/Layout';
+import BreadCrumb from "../components/BreadCrumb";
+
+// Font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function AccessHistory() {
     const [accessdata, setAccessData] = useState([]);
+    
+    // globals const
+    const authorizedAccessIcon = <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'green' }} />;
+    const unauthorizedAccessIcon = <FontAwesomeIcon icon={faBan} style={{ color: 'red' }} />;
 
     // Geting all access and set at the tableDatas
     useEffect(() => {
         getAllAccessHistory();
+    }, []);
 
-    }, [accessdata]);
-
+    /**
+     * @summary fetch the access data and set it at the state
+     */
     function getAllAccessHistory() {
         getAllAccessData('http://localhost:3010/AccessHistory')
         .then(res => setAccessData(res))
     }
 
-    console.log('accessdata::', accessdata)
+    /**
+     * @summary Format the db access data
+     * @param {array} accessData - The returned db access data
+     * @returns {array} Return a array of object with the access data formatted
+     */
+    function formatAccessData(accessData) {
+        let accessDataFormatted = [];
+
+        if (accessData && accessData.length > 0) {
+            accessDataFormatted = accessData.map(data => {
+                // Setting the default values
+                const rowDate = data.date;
+                let fullDate = rowDate;
+                let hour = rowDate;
+                let collaborator = data.collaborator_name;
+                let isAuthorizedAccess = (<div></div>);
+
+                // formatting date
+                const jsDate = new Date(rowDate);
+                const dateFormatted = jsDate.toLocaleString("pt-br")
+                fullDate = dateFormatted.substring(0, 10);
+                hour = dateFormatted.substring(11, 19);
+
+                // set authorized access as icon for denied or allowed
+                if (data.authorized_access) {
+                    isAuthorizedAccess = authorizedAccessIcon;
+                } else {
+                    isAuthorizedAccess = unauthorizedAccessIcon;
+                }
+
+                return {fullDate: fullDate, hour: hour, collaborator_name: collaborator, isAuthorizedAccess: isAuthorizedAccess};
+            });
+        }
+
+        return accessDataFormatted;
+    }
+
     const columns = useMemo(
         () => [
             {
-                Header: "Histórico de violações",
+                Header: "Histórico de Acessos",
                 columns: [
                     {
                         Header: "Data",
-                        accessor: "df"
+                        accessor: "fullDate"
                     },
                     {
                         Header: "hora",
-                        accessor: "data"
+                        accessor: "hour"
                     },
                     {
                         Header: "Colaborador",
-                        accessor: "colaborador_nome"
+                        accessor: "collaborator_name"
                     },
                     {
                         Header: "Acesso autorizado",
-                        accessor: "acesso_autorizado"
+                        accessor: "isAuthorizedAccess"
                     }
                 ]
             }
@@ -57,10 +104,9 @@ export default function AccessHistory() {
                     name='Histórico de acessos'
                     icon='faHistory'
                 />
-
                 <GenericTable
                     columns={columns}
-                    data={accessdata}
+                    data={formatAccessData(accessdata)}
                 />
             </div>
         </Layout>
