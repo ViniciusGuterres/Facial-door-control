@@ -1,0 +1,19 @@
+-- create acessos table
+create table acessos (
+	id serial primary key,
+	colaborador_nome varchar not null,
+	data timestamp not null,
+	acesso_autorizado boolean not null
+);
+
+-- Populando tabela com dados testes
+insert into acessos (colaborador_nome, data, acesso_autorizado) values ('Vinicius', '2017-08-24 17:45:42', true);
+insert into acessos (colaborador_nome, data, acesso_autorizado) values ('Vanessa', '2017-08-24 18:45:42', false);
+insert into acessos (colaborador_nome, data, acesso_autorizado) values ('Gustavo', '2017-08-24 20:45:42', true);
+insert into acessos (colaborador_nome, data, acesso_autorizado) values ('Maria', '2017-08-24 21:45:42', true);
+insert into acessos (colaborador_nome, data, acesso_autorizado) values ('Marcos', '2017-08-24 22:45:42', false);
+insert into acessos (colaborador_nome, data, acesso_autorizado) values ('Paulo', '2017-08-24 13:55:42', true);
+insert into acessos (colaborador_nome, data, acesso_autorizado) values ('João', '2017-08-24 12:43:42', false);
+
+-- Selec simples na tabela de acessos
+select * from acessos;

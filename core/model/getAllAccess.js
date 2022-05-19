@@ -1,14 +1,14 @@
-const { Client } = require('pg');
+const {Client} = require('pg');
 
-exports.data = function getAllEmployees() {
+exports.data = function getAllAccess() {
 
     const db = new Client({
         user: 'postgres',
         host: 'localhost',
-        database: 'covid_manager',
+        database: 'postgres',
         password: 'admin',
         port: 5432
-    });
+    })
 
     const result = {
         err: null,
@@ -16,6 +16,7 @@ exports.data = function getAllEmployees() {
     };
 
     const error = (err) => {
+        console.log('getAllAccess/error:', err);
         db.end();
 
         result.err = err;
@@ -24,9 +25,15 @@ exports.data = function getAllEmployees() {
     };
 
     const executeQuery = () => {
-
-        const selectUsers = 
-            `SELECT * FROM users`;
+        const query = `
+            SELECT 
+                id,
+                colaborador_nome as collaborator_name,
+                data as date,
+                acesso_autorizado as authorized_access
+            FROM 
+                acessos;
+        `;
 
         const succesful = (data) => {
             db.end();
@@ -36,7 +43,7 @@ exports.data = function getAllEmployees() {
             return result;
         };
 
-        return db.query(selectUsers)
+        return db.query(query)
             .then(succesful)
             .catch(error)
     };
