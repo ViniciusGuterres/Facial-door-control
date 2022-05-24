@@ -86,22 +86,38 @@ function Header() {
 }
 
 function NavMenu() {
+    const styles = {
+        menuItem: {
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            cursor: 'pointer',
+            background: '#06449b',
+            borderRadius: '10px',
+            padding: '12px'
+        },
+    };
+
     return (
-        <div className="w-1/5 bg-gray-900 text-white">
+        <div className="w-1/5 bg-gray-900 text-white" >
             <ul className="menu bg-base-100 p-5 rounded-box flex flex-col gap-10">
-                <li className="h-10 flex items-center bg-indigo-800 ease-in duration-200 rounded-xl p-5 cursor-pointer">
+                <li
+                    style={styles.menuItem}
+                >
                     <Link href='/'>
-                        <div>
+                        <>
                             <FontAwesomeIcon
                                 className="mr-3"
                                 icon={faHome}
                             />
-                            <a>Home</a>
-                        </div>
+                            Home
+                        </>
                     </Link>
                 </li>
 
-                <li className="h-10 flex items-center cursor-pointer ease-in duration-200 hover:bg-indigo-800 rounded-xl p-5">
+                <li
+                    style={styles.menuItem}
+                >
                     <Link href='userCrud' className='flex items-center'>
                         <div>
                             <FontAwesomeIcon
@@ -113,7 +129,7 @@ function NavMenu() {
                     </Link>
                 </li>
 
-                <li className="h-10 cursor-pointer hover:bg-indigo-800 rounded-xl p-5">
+                <li style={styles.menuItem}>
                     <div className="h-full">
                         <FontAwesomeIcon
                             className="mr-3"

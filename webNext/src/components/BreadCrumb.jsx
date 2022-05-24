@@ -21,6 +21,9 @@ function BreadCrumb(props) {
             case 'faHistory':
                 chosenIcon = faHistory;
                 break;
+            case 'faPen':
+                chosenIcon = faPen;
+                break;
             default:
                 break;
         }
