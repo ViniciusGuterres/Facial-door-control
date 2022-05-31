@@ -47,6 +47,13 @@ const WebcamCapture = () => {
                     e.preventDefault();
                     capture();
                 }}
+                style={{
+                    width: '150px',
+                    height: '30px',
+                    background: 'tomato',
+                    color: '#fff',
+                    borderRadius: '3px'
+                }}
             >
                 Capturar rosto
             </button>

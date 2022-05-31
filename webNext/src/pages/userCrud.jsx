@@ -29,62 +29,109 @@ export default function userCrud() {
     }
 
     const form = () => {
+        const styles = {
+            mainContainer: {
+                height: '650px',
+                width: '500px',
+                boxShadow: '1px 5px 16px 4px rgb(0 0 0 / 20%)',
+                padding: '20px',
+                borderRadius: '5px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px'
+            },
+            fieldRowContainer: {
+                display: 'flex',
+                flexDirection: 'column',
+                height: 'auto',
+                gap: '10px'
+            },
+            labelDefaultStyle: {
+                display: 'flex',
+                alignItems: 'center',
+                fontSize: '15px',
+                color: '#525252',
+                height: 'auto'
+            },
+            inputDefaultStyle: {
+                width: '100%',
+                height: '40px',
+                borderRadius: '3px',
+                paddingLeft: '10px',
+                border: '1px solid #52525224',
+                paddingRight: '10px'
+            },
+            checkBoxContainer: {
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                height: 'auto '
+            },
+            checkboxDefaultStyle: {
+                cursor: 'pointer',
+                height: '15px',
+                width: '15px'
+            },
+            buttonContainer: {
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            },
+            buttonDefaultStyle: {
+                height: '32px',
+                width: '40%',
+                background: 'red',
+                borderRadius: '20px',
+                color: '#fff',
+                background: '#06449b',
+            }
+        };
+
         return (
-            <form
-                style={{ 
-                    height: '100px',
-                    border: '1px solid black' 
-                }}
+            <div
+                style={styles.mainContainer}
             >
                 {/* Name */}
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            Nome
-                        </label>
-                    </div>
+                <div style={styles.fieldRowContainer}>
+                    <label style={styles.labelDefaultStyle}> Nome </label>
 
-                    <div className="md:w-2/3">
-                        <input
-                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            id="inline-full-name"
-                            type="text"
-                            placeholder="Insira o nome"
-                            value={employeeName}
-                            onChange={event => handleChangeEmployeeNameInput(event)}
-                        />
-                    </div>
+                    <input
+                        id="inline-full-name"
+                        type="text"
+                        placeholder="Insira o nome"
+                        value={employeeName}
+                        onChange={event => handleChangeEmployeeNameInput(event)}
+                        style={styles.inputDefaultStyle}
+                    />
                 </div>
 
                 {/* Email */}
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3">
-                        <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            Email
-                        </label>
-                    </div>
+                <div style={styles.fieldRowContainer}>
+                    <label style={styles.labelDefaultStyle}>
+                        Email
+                    </label>
 
-                    <div className="md:w-2/3">
-                        <input
-                            placeholder="Insira o email"
-                            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            id="inline-full-name"
-                            type="email"
-                            value={employeeEmail}
-                            onChange={event => handleChangeEmployeeEmailInput(event)}
-                        />
-                    </div>
+                    <input
+                        placeholder="Insira o email"
+                        id="inline-full-name"
+                        type="email"
+                        value={employeeEmail}
+                        onChange={event => handleChangeEmployeeEmailInput(event)}
+                        style={styles.inputDefaultStyle}
+                    />
                 </div>
 
                 {/* Setor */}
-                <div className="md:flex md:items-center mb-6">
-                    <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                <div style={styles.fieldRowContainer}>
+                    <label style={styles.labelDefaultStyle}>
                         Setor
                     </label>
 
                     <select
-                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-state"
+                        style={styles.inputDefaultStyle}
                     >
                         <option>RH</option>
                         <option>TI</option>
@@ -95,58 +142,58 @@ export default function userCrud() {
                 </div>
 
                 {/* Birth Date */}
-                <div className="flex items-center justify-center mb-6">
-                    <div className="datepicker relative form-floating mb-3 xl:w-96">
+                <div style={styles.fieldRowContainer}>
+                    <div >
+                        <label style={styles.labelDefaultStyle}>
+                            Data de nascimento
+                        </label>
+
                         <input
                             type="date"
-                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             value={employeeBirth}
                             onChange={event => handleChangeEmployeeBirthInput(event)}
+                            style={styles.inputDefaultStyle}
                         />
-                        <label for="floatingInput" className="text-gray-700">Insira a data de nascimento</label>
                     </div>
                 </div>
 
                 {/* Have access */}
-                <div className="md:flex md:items-center mb-6">
-                    <div className="md:w-1/3"></div>
-                    <label className="md:w-2/3 block text-gray-500 font-bold">
-                        <input
-                            className="mr-2 leading-tight cursor-pointer"
-                            checked={employeeHaveAccess}
-                            type="checkbox"
-                            onClick={() => toggleEmployeeHaveAccessInput()}
-                        />
+                <div style={styles.checkBoxContainer}>
 
-                        <span className="text-sm">
-                            Tem acesso
-                        </span>
-                    </label>
+                    <span style={styles.labelDefaultStyle}> Tem acesso ? </span>
+
+                    <input
+                        checked={employeeHaveAccess}
+                        type="checkbox"
+                        onClick={() => toggleEmployeeHaveAccessInput()}
+                        style={styles.checkboxDefaultStyle}
+                    />
                 </div>
 
                 <WebcamCapture />
 
-                <div className="md:flex md:items-center">
-                    <div className="md:w-1/3"></div>
-                    <div className="md:w-2/3">
-                        <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
-                            Cadastrar
-                        </button>
-                    </div>
+                {/* Submit button */}
+                <div style={styles.buttonContainer}>
+                    <button
+                        type="button"
+                        style={styles.buttonDefaultStyle}
+                    >
+                        Cadastrar
+                    </button>
                 </div>
-            </form>
+            </div >
         )
     };
 
     return (
         <Layout>
-            <div>
+            <div style={{ width: '100%' }}>
                 <BreadCrumb
                     name='Cadastro de usuário'
                     icon='faPen'
                 />
 
-                <div style={{ height: '100%', widgth: '100%' }}>
+                <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     {form()}
                 </div>
             </div>
