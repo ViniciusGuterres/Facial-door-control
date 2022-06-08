@@ -31,7 +31,7 @@ export default function userCrud() {
     const form = () => {
         const styles = {
             mainContainer: {
-                height: '650px',
+                height: '750px',
                 width: '500px',
                 boxShadow: '1px 5px 16px 4px rgb(0 0 0 / 20%)',
                 padding: '20px',

@@ -34,7 +34,7 @@ const WebcamCapture = () => {
                         audio={false}
                         height={200}
                         ref={webcamRef}
-                        screenshotFormat='image/jpeg'
+                        screenshotFormat='image/png"'
                         width={220}
                         videoConstraints={videoConstraints}
                     />

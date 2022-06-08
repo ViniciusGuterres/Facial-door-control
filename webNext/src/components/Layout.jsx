@@ -9,10 +9,12 @@ import { faCamera, faBell, faHome, faHistory, faPen } from "@fortawesome/free-so
 function Layout(props) {
 
     return (
-        <div>
+        <div style={{
+            height: '100vh'
+        }}>
             <Header />
 
-            <div className="flex">
+            <div className="flex" style={{height: '100%' }}>
                 <NavMenu />
                 {props.children}
             </div>
@@ -94,12 +96,13 @@ function NavMenu() {
             cursor: 'pointer',
             background: '#06449b',
             borderRadius: '10px',
-            padding: '12px'
+            padding: '12px',
+            height: '100%'
         },
     };
 
     return (
-        <div className="w-1/5 bg-gray-900 text-white" >
+        <div className="w-1/5 bg-gray-900 text-white" style={{height: '100%' }} >
             <ul className="menu bg-base-100 p-5 rounded-box flex flex-col gap-10">
                 <li
                     style={styles.menuItem}
