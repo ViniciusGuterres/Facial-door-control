@@ -94,7 +94,12 @@ function InfoCard(props) {
 
 function DonutChartCard() {
   return (
-    <div className="h-3/6 w-2/6 mt-8 shadow-lg shadow-cyan-500/50">
+    <div
+      style={{
+        height: '70%'
+      }}
+      className="h-3/6 w-2/6 mt-8 shadow-lg shadow-cyan-500/50"
+    >
       <div className="flex items-center p-10 h-1/6 border-b border-gray-500">
         <span className="ml-8">
           Percentual de cadastro
@@ -121,7 +126,13 @@ function DonutChartCard() {
 
 function BarChartCard() {
   return (
-    <div className="h-3/6 w-4/6 mt-8 shadow-lg shadow-cyan-500/50">
+    <div
+      style={{
+        height: '70%'
+      }}
+      className="h-3/6 w-4/6 mt-8 shadow-lg shadow-cyan-500/50"
+
+    >
       <div className="flex items-center p-10 h-1/6 border-b border-gray-500">
         <span className="ml-8">
           Acessos semanais

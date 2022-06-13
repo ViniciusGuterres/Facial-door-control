@@ -60,7 +60,7 @@ function BarChart(props) {
             series={props.series}
             type="bar"
             width="100%"
-            height='100%'
+            height='60%'
         />
     )
 }
@@ -85,7 +85,7 @@ function LineChart(props) {
             series={props.series}
             type='line'
             width='100%'
-            height='80%'
+            height='60%'
         />
     )
 }

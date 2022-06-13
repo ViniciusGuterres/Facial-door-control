@@ -112,7 +112,7 @@ export default function AccessHistory() {
 
             <Notification
                 title={'Acesso permitido'}
-                subtitle='test test'
+                subtitle='Acesso permitido'
                 type={'sucess'}
             />
 
