@@ -10,6 +10,7 @@ export default function userCrud() {
     const [employeeBirth, setEmployeeBirth] = useState(null);
     const [employeeEmail, setEmployeeEmail] = useState('');
     const [employeeHaveAccess, setEmployeeHaveAccess] = useState(false);
+    const [isPhotoMode, setPhotoMode] = useState(false);
 
     // Change inputs functions
     const handleChangeEmployeeNameInput = event => {
@@ -26,6 +27,10 @@ export default function userCrud() {
 
     const toggleEmployeeHaveAccessInput = () => {
         setEmployeeHaveAccess(!employeeHaveAccess);
+    }
+
+    const activePhotoMode = () => {
+        setPhotoMode(true);
     }
 
     const form = () => {
@@ -86,6 +91,21 @@ export default function userCrud() {
                 borderRadius: '20px',
                 color: '#fff',
                 background: '#06449b',
+            },
+            photoMainContainer: {
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center'
+            },
+            photoModeButton: {
+                background: 'tomato',
+                color: '#fff',
+                borderRadius: '2px',
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '3px',
+                width: '50%',
+                cursor: 'pointer'
             }
         };
 
@@ -170,7 +190,30 @@ export default function userCrud() {
                     />
                 </div>
 
-                <WebcamCapture />
+                {/* Web cam div */}
+                <div
+                    style={styles.photoMainContainer}
+                >
+                    <div
+                        style={styles.photoModeButton}
+                        onClick={activePhotoMode}
+                    >
+                        Tirar foto
+                    </div>
+                </div>
+
+                {
+                    isPhotoMode
+                        ?
+                        <div
+                            style={{
+                            }}
+                        >
+                            <WebcamCapture />
+                        </div>
+                        :
+                        null
+                }
 
                 {/* Submit button */}
                 <div style={styles.buttonContainer}>

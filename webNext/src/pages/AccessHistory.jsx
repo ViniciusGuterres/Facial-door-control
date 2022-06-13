@@ -8,6 +8,7 @@ import { getAllAccessData } from '../javascriptTemp/api';
 import GenericTable from "../components/GenericTable";
 import Layout from '../components/Layout';
 import BreadCrumb from "../components/BreadCrumb";
+import Notification from "../components/Notification";
 
 // Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,22 +16,31 @@ import { faBan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function AccessHistory() {
     const [accessdata, setAccessData] = useState([]);
-    
+    console.log("🚀 ~ file: AccessHistory.jsx ~ line 19 ~ AccessHistory ~ accessdata", accessdata)
+
     // globals const
     const authorizedAccessIcon = <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'green' }} />;
     const unauthorizedAccessIcon = <FontAwesomeIcon icon={faBan} style={{ color: 'red' }} />;
 
     // Geting all access and set at the tableDatas
     useEffect(() => {
-        getAllAccessHistory();
-    }, []);
+
+        if (!accessdata.length) {
+            getAllAccessHistory()
+        } else {
+            setTimeout(() => {
+                getAllAccessHistory();
+            }, 5000);
+        }
+
+    }, [accessdata]);
 
     /**
      * @summary fetch the access data and set it at the state
      */
     function getAllAccessHistory() {
         getAllAccessData('http://localhost:3010/AccessHistory')
-        .then(res => setAccessData(res))
+            .then(res => setAccessData(res))
     }
 
     /**
@@ -63,7 +73,7 @@ export default function AccessHistory() {
                     isAuthorizedAccess = unauthorizedAccessIcon;
                 }
 
-                return {fullDate: fullDate, hour: hour, collaborator_name: collaborator, isAuthorizedAccess: isAuthorizedAccess};
+                return { fullDate: fullDate, hour: hour, collaborator_name: collaborator, isAuthorizedAccess: isAuthorizedAccess };
             });
         }
 
@@ -99,6 +109,13 @@ export default function AccessHistory() {
 
     return (
         <Layout>
+
+            <Notification
+                title={'Acesso permitido'}
+                subtitle='test test'
+                type={'sucess'}
+            />
+
             <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <BreadCrumb
                     name='Histórico de acessos'
