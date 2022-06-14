@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Layout from '../components/Layout';
 import WebcamCapture from '../components/WebcamCapture';
+import Notification from '../components/Notification';
 
 export default function userCrud() {
     const [employeeName, setEmployeeName] = useState('');
@@ -11,6 +12,7 @@ export default function userCrud() {
     const [employeeEmail, setEmployeeEmail] = useState('');
     const [employeeHaveAccess, setEmployeeHaveAccess] = useState(false);
     const [isPhotoMode, setPhotoMode] = useState(false);
+    const [isShowingNotification, setIsShowingNotification] = useState(false);
 
     // Change inputs functions
     const handleChangeEmployeeNameInput = event => {
@@ -33,10 +35,19 @@ export default function userCrud() {
         setPhotoMode(true);
     }
 
+    const saveUser = () => {
+        setEmployeeName('');
+        setEmployeeBirth(null);
+        setEmployeeEmail('');
+        setEmployeeHaveAccess(false);
+        setPhotoMode(false);
+        setIsShowingNotification(true);
+    }
+
     const form = () => {
         const styles = {
             mainContainer: {
-                height: '750px',
+                height: !isPhotoMode ? '70%': '90%',
                 width: '500px',
                 boxShadow: '1px 5px 16px 4px rgb(0 0 0 / 20%)',
                 padding: '20px',
@@ -220,6 +231,9 @@ export default function userCrud() {
                     <button
                         type="button"
                         style={styles.buttonDefaultStyle}
+                        onClick={() => {
+                            saveUser()
+                        }}
                     >
                         Cadastrar
                     </button>
@@ -235,6 +249,18 @@ export default function userCrud() {
                     name='Cadastro de usuário'
                     icon='faPen'
                 />
+
+                {
+                    isShowingNotification
+                        ?
+                        <Notification
+                            title={'Sucesso'}
+                            subtitle='Cadastro efetuado com sucesso'
+                            type={'sucess'}
+                        />
+                        :
+                        null
+                }
 
                 <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     {form()}
