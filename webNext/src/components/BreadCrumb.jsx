@@ -5,7 +5,7 @@ import style from '../styles/BreadCrumb.module.css';
 
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faBell, faHome, faHistory, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faBell, faHome, faHistory, faPen, faList } from "@fortawesome/free-solid-svg-icons";
 
 function BreadCrumb(props) {
 
@@ -24,15 +24,18 @@ function BreadCrumb(props) {
             case 'faPen':
                 chosenIcon = faPen;
                 break;
+            case 'faList':
+                chosenIcon = faList;
+                break;
             default:
                 break;
         }
-
+        console.log(chosenIcon);
         if (chosenIcon) {
             return (
                 <FontAwesomeIcon
                     style={{marginRight: '5px'}}
-                    icon={faHistory}
+                    icon={chosenIcon}
                 />
             )
         } else {

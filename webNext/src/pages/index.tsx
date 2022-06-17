@@ -16,7 +16,7 @@ export default function Home() {
         {/* First Row - infos cards */}
         <div className="flex gap-4 w-full p-5 h-48">
           <InfoCard
-            data={'23,5'}
+            data={'7,5'}
             icon={faDoorOpen}
             bgColor={'#12762a'}
             percents={13.4}
@@ -24,7 +24,7 @@ export default function Home() {
           />
 
           <InfoCard
-            data={'23,5'}
+            data={'23'}
             icon={faLock}
             bgColor={'#ff0000b5'}
             percents={13.4}
@@ -33,7 +33,7 @@ export default function Home() {
           />
 
           <InfoCard
-            data={'23,5'}
+            data={'25,5'}
             icon={faUsers}
             percents={13.4}
             bgColor={'#00ffeea1'}
@@ -41,7 +41,7 @@ export default function Home() {
           />
 
           <InfoCard
-            data={'23,5'}
+            data={'13'}
             icon={faPercent}
             percents={13.4}
             bgColor={'#ffff00a1'}

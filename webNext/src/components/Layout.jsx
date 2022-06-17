@@ -4,7 +4,7 @@ import Link from "next/link";
 
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faBell, faHome, faHistory, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faBell, faHome, faHistory, faPen, faList } from "@fortawesome/free-solid-svg-icons";
 
 function Layout(props) {
 
@@ -102,19 +102,19 @@ function NavMenu() {
     };
 
     return (
-        <div className="w-1/5 bg-gray-900 text-white" style={{height: '100%' }} >
+        <div className="bg-gray-900 text-white" style={{height: '100%', width: '22%' }} >
             <ul className="menu bg-base-100 p-5 rounded-box flex flex-col gap-10">
                 <li
                     style={styles.menuItem}
                 >
-                    <Link href='/'>
-                        <>
+                    <Link href='/' className='flex items-center'>
+                        <div>
                             <FontAwesomeIcon
                                 className="mr-3"
                                 icon={faHome}
                             />
                             Home
-                        </>
+                        </div>
                     </Link>
                 </li>
 
@@ -128,6 +128,20 @@ function NavMenu() {
                                 icon={faPen}
                             />
                             <a>Cadastro de usuário</a>
+                        </div>
+                    </Link>
+                </li>
+
+                <li
+                    style={styles.menuItem}
+                >
+                    <Link href='usersList' className='flex items-center'>
+                        <div>
+                            <FontAwesomeIcon
+                                className="mr-3"
+                                icon={faList}
+                            />
+                            <a>Lista de usuário</a>
                         </div>
                     </Link>
                 </li>
