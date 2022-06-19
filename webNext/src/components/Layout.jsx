@@ -135,7 +135,7 @@ function NavMenu() {
                 <li
                     style={styles.menuItem}
                 >
-                    <Link href='usersList' className='flex items-center'>
+                    <Link href='/' className='flex items-center'>
                         <div>
                             <FontAwesomeIcon
                                 className="mr-3"

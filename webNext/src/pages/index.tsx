@@ -102,7 +102,7 @@ function DonutChartCard() {
     >
       <div className="flex items-center p-10 h-1/6 border-b border-gray-500">
         <span className="ml-8">
-          Percentual de cadastro
+          Percentual de cadastro por setor
         </span>
       </div>
 
