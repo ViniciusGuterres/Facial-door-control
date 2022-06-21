@@ -47,7 +47,7 @@ export default function userCrud() {
     const form = () => {
         const styles = {
             mainContainer: {
-                height: !isPhotoMode ? '70%': '90%',
+                height: !isPhotoMode ? '520px': '800px',
                 width: '500px',
                 boxShadow: '1px 5px 16px 4px rgb(0 0 0 / 20%)',
                 padding: '20px',
