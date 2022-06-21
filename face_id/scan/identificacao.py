@@ -1,6 +1,7 @@
 import os
 import cv2
 import imutils
+import pysftp as sf
 from menu import main
 import PySimpleGUI as sg
 import psycopg2 as PgSQL
@@ -17,6 +18,17 @@ face_attributes=""
 beauty_score_and_emotion_recognition=""
 faceCascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_default.xml")
 
+#servidor
+address = '192.168.5.108'
+username = 'face'
+password = 'faceid'
+
+#banco
+host='localhost'
+database='postgres'
+user='postgres'
+password='admin'
+
 def verifica(app):
     sg.theme('DarkBlack')
     dados = [
@@ -24,7 +36,7 @@ def verifica(app):
         [sg.Button('Ok')]
     ]
 
-    window = sg.Window('Menu', dados, element_justification='c')
+    window = sg.Window('Identificação', dados, element_justification='c')
     e, v = window.read()
     nome = v['nome']
 
@@ -48,7 +60,7 @@ def verifica(app):
         test.close()
         webcam = cv2.VideoCapture(0)
         _, img = webcam.read()
-        verifica = str(datetime.now())
+        verifica = 'verifica'
         data = (datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         cv2.imwrite('verifica/'+ verifica +'.jpg', img) 
 
@@ -58,27 +70,42 @@ def verifica(app):
 
         if confidence > 80:
             result = True
-            
+                
         else:
             result = False
 
-        con = PgSQL.connect(host='localhost',
-                            database='postgres',
-                            user='postgres',
-                            password='faceid1234')
+        con = PgSQL.connect(host=host,
+                            database=database,
+                            user=user,
+                            password=password)
         cursor = con.cursor()
         cursor.execute('INSERT INTO acessos (colaborador_nome, data, acesso_autorizado) VALUES (%s,%s,%s);', (nome, data, result))
         con.commit()
         
-    except cv2.error:
-        sg.popup_ok('Verifique a conexão com a câmera')
+    except FileNotFoundError as error:
+        result = False
+        error = str(error)
+        con = PgSQL.connect(host=host,
+                            database=database,
+                            user=user,
+                            password=password)
+        cursor = con.cursor()
+        cursor.execute('INSERT INTO acessos (colaborador_nome, data, acesso_autorizado) VALUES (%s,%s,%s);', (nome, data, result))
+        con.commit()
+        with open('log/log.dat', 'a') as file:
+            file.write(data + '\n' + error + '\n\n------------------------------------------------------------------------\n\n')
+        sg.popup_ok('Cadastro não encontrado')
         main()
-        os._exit(0)    
+        os._exit(0) 
 
-    except (Exception, PgSQL.DatabaseError) as error:
-        sg.popup_ok('Falha ao conectar com banco')
-        os._exit(0)
-    
+    except Exception as error:
+        sg.popup_ok('Algo deu errado, verifique o log')
+        error = str(error)
+        with open('log/log.dat', 'a') as file:
+            file.write(data + '\n' + error + '\n\n------------------------------------------------------------------------\n\n')
+        main()
+        os._exit(0) 
+
     faceCascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_default.xml")
     while True:
         img = cv2.imread(img2)

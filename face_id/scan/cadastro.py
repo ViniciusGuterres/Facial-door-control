@@ -4,9 +4,16 @@ import base64
 import imutils
 import pysftp as sf
 from menu import main
-import psycopg2 as PgSQL
 import PySimpleGUI as sg
-import PIL.Image as Image
+from datetime import datetime
+
+#servidor
+address = '192.168.5.108'
+username = 'face'
+password = 'faceid'
+
+data = (datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+faceCascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_default.xml")
 
 def cadastraRosto():
     sg.theme('DarkBlack')
@@ -15,7 +22,7 @@ def cadastraRosto():
         [sg.Button('Seguir')]
     ]
 
-    window = sg.Window('Menu', dados, element_justification='c')
+    window = sg.Window('Cadastro', dados, element_justification='c')
     e, v = window.read()
     nome = v['nome']
     if e == sg.WINDOW_CLOSED:
@@ -54,18 +61,15 @@ def cadastraRosto():
     imgName = "banco/" + nome + ".jpg"
     cv2.imwrite(imgName, gray_img)
     sg.popup_auto_close('Cadastro realizado com sucesso')
-
-    image = open("banco/"+ nome +".jpg", "rb")
-    img = image.read()
-    img_byte = bytearray(img)
-    img_code = base64.b64encode(img_byte)
-    con = PgSQL.connect(host='localhost',
-                        database='postgres',
-                        user='postgres',
-                        password='faceid1234')
-    cursor = con.cursor()
-    cursor.execute('INSERT INTO usuarios (nome, imagem_rosto) VALUES (%s,%s);', (nome, img_code))
-    con.commit()   
+    try:
+        with sf.Connection(address, username=username, password=password) as sftp:
+            with sftp.cd('/home/face/face_id/cadastro'):             
+                sftp.put(imgName)  
+    except Exception as error:
+        error = str(error)
+        with open('log/log.dat', 'a') as file:
+            file.write(data + '\n' + error + '\n\n------------------------------------------------------------------------\n\n')
+        sg.popup('Falha ao conectar com o servidor')
      
     cv2.destroyAllWindows()
     main()

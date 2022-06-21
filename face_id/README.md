@@ -16,14 +16,5 @@
 	Atualização = 19/04/2022:
 		Adcionado o tratamento de multiplas faces impedindo de realizar a verificação/liberação 
 		caso ouver mais de uma. 
-
-	Atualização = 06/05/2022:
-		conexão com servidor para salvar as imagens de cadastros e tentativas de acesso.
-
-	Atualização = 08/05/2022:
-		Adcionado novas opções como exclusão de cadastro, atualização de banco local e uma opção
-		de download de antigas tentativas salvas no servidor.
-
-	Atualização = 19/05/2022:
-		Substituído o método de salvar dados no servidor para salvar no banco de dados postgresql
+		
 #------------------------------------------------------------------------------------------------------------------------------#
