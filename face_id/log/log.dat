@@ -1,0 +1,155 @@
+2022-08-25 12:21:33
+log de identificacao
+local variable 'file' referenced before assignment
+
+------------------------------------------------------------------------------
+
+2022-08-25 12:22:08
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 12:23:42
+log de identificacao
+[Errno 21] Is a directory: 'banco/'
+
+------------------------------------------------------------------------------
+
+2022-08-25 12:24:03
+log de identificacao
+[Errno 2] No such file or directory: 'logo.png'
+
+------------------------------------------------------------------------------
+
+2022-08-25 12:26:04
+log de identificacao
+[Errno 2] No such file or directory: 'logo.png'
+
+------------------------------------------------------------------------------
+
+2022-08-25 12:26:36
+log de identificacao
+Resource doesn't have the requested attribute
+
+------------------------------------------------------------------------------
+
+2022-08-25 12:30:28
+log de identificacao
+local variable 'img' referenced before assignment
+
+------------------------------------------------------------------------------
+
+2022-08-25 12:30:56
+log de identificacao
+Resource doesn't have the requested attribute
+
+------------------------------------------------------------------------------
+
+2022-08-25 15:34:50
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:35:02
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:35:43
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:40:56
+log de img_neg
+[Errno 2] No such file or directory: 'verifica/2022-08-25 15:40:48.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:40:48
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:45:00
+log de img_neg
+[Errno 2] No such file or directory: 'verifica/2022-08-25 15:44:54.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:44:54
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:45:09
+log de img_neg
+[Errno 2] No such file or directory: 'verifica/2022-08-25 15:45:03.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:45:03
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:46:23
+log de img_neg
+[Errno 2] No such file or directory: 'verifica/2022-08-25 15:46:17.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:46:17
+log de cadastro
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:47:10
+log de img_neg
+[Errno 2] No such file or directory: 'verifica/2022-08-25 15:47:05.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 15:47:05
+log de identificacao
+[Errno 2] No such file or directory: 'hugo.jpg'
+
+-------------------------------------------------------------------------------
+
+2022-08-25 17:08:32
+log de identificacao
+remove: embedded null character in path
+
+------------------------------------------------------------------------------
+
+2022-08-25 17:16:33
+log de identificacao
+Resource doesn't have the requested attribute
+
+------------------------------------------------------------------------------
+
+2022-08-25 17:16:55
+log de identificacao
+Resource doesn't have the requested attribute
+
+------------------------------------------------------------------------------
+
+2022-08-25 17:18:09
+log de identificacao
+Resource doesn't have the requested attribute
+
+------------------------------------------------------------------------------
+
+2022-08-25 17:23:06
+log de identificacao
+if you give only one argument to maketrans it must be a dict
+
+------------------------------------------------------------------------------
+
+2022-08-25 17:24:31
+log de identificacao
+the first two maketrans arguments must have equal length
+
+------------------------------------------------------------------------------
+
