@@ -8,7 +8,6 @@ import ApexChart from '../components/ApexChart';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faDoorOpen, faPercent, faUsers } from "@fortawesome/free-solid-svg-icons";
 
-
 export default function Home() {
   return (
     <Layout>

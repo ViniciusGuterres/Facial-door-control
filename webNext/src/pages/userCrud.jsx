@@ -3,15 +3,12 @@ import React, { useState } from "react";
 // Components
 import BreadCrumb from "../components/BreadCrumb";
 import Layout from '../components/Layout';
-import WebcamCapture from '../components/WebcamCapture';
 import Notification from '../components/Notification';
 
 export default function userCrud() {
     const [employeeName, setEmployeeName] = useState('');
-    const [employeeBirth, setEmployeeBirth] = useState(null);
     const [employeeEmail, setEmployeeEmail] = useState('');
     const [employeeHaveAccess, setEmployeeHaveAccess] = useState(false);
-    const [isPhotoMode, setPhotoMode] = useState(false);
     const [isShowingNotification, setIsShowingNotification] = useState(false);
 
     // Change inputs functions
@@ -25,10 +22,6 @@ export default function userCrud() {
 
     const handleChangeEmployeeEmailInput = event => {
         setEmployeeEmail(event.target.value);
-    }
-
-    const toggleEmployeeHaveAccessInput = () => {
-        setEmployeeHaveAccess(!employeeHaveAccess);
     }
 
     const activePhotoMode = () => {
@@ -47,14 +40,16 @@ export default function userCrud() {
     const form = () => {
         const styles = {
             mainContainer: {
-                height: !isPhotoMode ? '520px': '800px',
+                // height: '520px',
                 width: '500px',
                 boxShadow: '1px 5px 16px 4px rgb(0 0 0 / 20%)',
-                padding: '20px',
                 borderRadius: '5px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '20px'
+            },
+            inputsContainer: {
+                padding: '20px',
             },
             fieldRowContainer: {
                 display: 'flex',
@@ -96,135 +91,95 @@ export default function userCrud() {
                 justifyContent: 'center'
             },
             buttonDefaultStyle: {
-                height: '32px',
-                width: '40%',
+                height: '42px',
+                width: '100%',
                 background: 'red',
-                borderRadius: '20px',
                 color: '#fff',
                 background: '#06449b',
-            },
-            photoMainContainer: {
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center'
-            },
-            photoModeButton: {
-                background: 'tomato',
-                color: '#fff',
-                borderRadius: '2px',
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '3px',
-                width: '50%',
-                cursor: 'pointer'
             }
         };
 
         return (
-            <div
-                style={styles.mainContainer}
-            >
-                {/* Name */}
-                <div style={styles.fieldRowContainer}>
-                    <label style={styles.labelDefaultStyle}> Nome </label>
-
-                    <input
-                        id="inline-full-name"
-                        type="text"
-                        placeholder="Insira o nome"
-                        value={employeeName}
-                        onChange={event => handleChangeEmployeeNameInput(event)}
-                        style={styles.inputDefaultStyle}
-                    />
-                </div>
-
-                {/* Email */}
-                <div style={styles.fieldRowContainer}>
-                    <label style={styles.labelDefaultStyle}>
-                        Email
-                    </label>
-
-                    <input
-                        placeholder="Insira o email"
-                        id="inline-full-name"
-                        type="email"
-                        value={employeeEmail}
-                        onChange={event => handleChangeEmployeeEmailInput(event)}
-                        style={styles.inputDefaultStyle}
-                    />
-                </div>
-
-                {/* Setor */}
-                <div style={styles.fieldRowContainer}>
-                    <label style={styles.labelDefaultStyle}>
-                        Setor
-                    </label>
-
-                    <select
-                        id="grid-state"
-                        style={styles.inputDefaultStyle}
-                    >
-                        <option>RH</option>
-                        <option>TI</option>
-                        <option>Engenharia</option>
-                        <option>ADM</option>
-                        <option>Logística</option>
-                    </select>
-                </div>
-
-                {/* Birth Date */}
-                <div style={styles.fieldRowContainer}>
-                    <div >
+            <div style={styles.mainContainer}>
+                <div style={styles.inputsContainer}>
+                    {/* Email */}
+                    <div style={styles.fieldRowContainer}>
                         <label style={styles.labelDefaultStyle}>
-                            Data de nascimento
+                            Email
                         </label>
 
                         <input
-                            type="date"
-                            value={employeeBirth}
-                            onChange={event => handleChangeEmployeeBirthInput(event)}
+                            placeholder="Insira o email"
+                            id="inline-full-name"
+                            type="email"
+                            value={employeeEmail}
+                            onChange={event => handleChangeEmployeeEmailInput(event)}
                             style={styles.inputDefaultStyle}
                         />
                     </div>
-                </div>
 
-                {/* Have access */}
-                <div style={styles.checkBoxContainer}>
+                    {/* Name */}
+                    <div style={styles.fieldRowContainer}>
+                        <label
+                            style={styles.labelDefaultStyle}>
+                            Nome completo
+                        </label>
 
-                    <span style={styles.labelDefaultStyle}> Tem acesso ? </span>
+                        <input
+                            id="inline-full-name"
+                            type="text"
+                            placeholder="Insira o nome"
+                            value={employeeName}
+                            onChange={event => handleChangeEmployeeNameInput(event)}
+                            style={styles.inputDefaultStyle}
+                        />
+                    </div>
 
-                    <input
-                        checked={employeeHaveAccess}
-                        type="checkbox"
-                        onClick={() => toggleEmployeeHaveAccessInput()}
-                        style={styles.checkboxDefaultStyle}
-                    />
-                </div>
 
-                {/* Web cam div */}
-                <div
-                    style={styles.photoMainContainer}
-                >
-                    <div
-                        style={styles.photoModeButton}
-                        onClick={activePhotoMode}
-                    >
-                        Tirar foto
+                    {/* Setor */}
+                    <div style={styles.fieldRowContainer}>
+                        <label style={styles.labelDefaultStyle}>
+                            Setor
+                        </label>
+
+                        <select
+                            id="grid-state"
+                            style={styles.inputDefaultStyle}
+                        >
+                            <option
+                                selected
+                            >
+                                Selecione um setor
+                            </option>
+                            <option>RH</option>
+                            <option>TI</option>
+                            <option>Engenharia</option>
+                            <option>ADM</option>
+                            <option>Logística</option>
+                        </select>
+                    </div>
+
+                    {/* Setor */}
+                    <div style={styles.fieldRowContainer}>
+                        <label style={styles.labelDefaultStyle}>
+                            Nível de acesso
+                        </label>
+
+                        <select
+                            id="grid-state"
+                            style={styles.inputDefaultStyle}
+                        >
+                            <option
+                                selected
+                            >
+                                Selecione um nível de acesso
+                            </option>
+                            <option>Operacional</option>
+                            <option>Analista</option>
+                            <option>Administrador</option>
+                        </select>
                     </div>
                 </div>
-
-                {
-                    isPhotoMode
-                        ?
-                        <div
-                            style={{
-                            }}
-                        >
-                            <WebcamCapture />
-                        </div>
-                        :
-                        null
-                }
 
                 {/* Submit button */}
                 <div style={styles.buttonContainer}>
@@ -262,7 +217,7 @@ export default function userCrud() {
                         null
                 }
 
-                <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                     {form()}
                 </div>
             </div>
