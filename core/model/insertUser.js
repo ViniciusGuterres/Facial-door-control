@@ -1,7 +1,6 @@
 const {Client} = require('pg');
 
 exports.data = function getAllAccess() {
-
     const db = new Client({
         user: 'postgres',
         host: 'localhost',

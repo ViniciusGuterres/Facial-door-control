@@ -17,3 +17,11 @@ insert into acessos (colaborador_nome, data, acesso_autorizado) values ('João',
 
 -- Selec simples na tabela de acessos
 select * from acessos;
+
+create table usuarios (
+	id serial primary key,
+	nome varchar not null,
+	setor varchar not null,
+	nivel_de_acesso int NOT NULL,
+	senha varchar NOT NULL
+);
