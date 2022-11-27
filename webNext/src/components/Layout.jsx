@@ -4,7 +4,7 @@ import Link from "next/link";
 
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faBell, faHome, faHistory, faPen, faList } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faBell, faHome, faHistory, faPen, faList, faFileAlt, faUserGear } from "@fortawesome/free-solid-svg-icons";
 
 function Layout(props) {
 
@@ -145,28 +145,42 @@ function NavMenu() {
                                 <a>Usuário</a>
                             </div>
 
-                            {/*  */}
-                            {
-                                isUserMenuTabOpen
-                                    ?
-                                    <div style={styles.menuSubItem}>
-                                        <Link
-                                            href='/userCrud'
-                                            className='flex items-center'
-                                        >
-                                            <a>* Cadastro</a>
-                                        </Link>
+                            {/* options */}
+                            <div style={styles.menuSubItem}>
+                                <Link
+                                    href='/userCrud'
+                                    className='flex items-center'
+                                >
+                                    <div style={{
+                                        marginLeft: '10px'
+                                    }}
+                                    >
+                                        <FontAwesomeIcon
+                                            className="mr-1"
+                                            icon={faUserGear}
+                                        />
 
-                                        <Link
-                                            href='/'
-                                            className='flex items-center'
-                                        >
-                                            <a>* Lista</a>
-                                        </Link>
+                                        <a>Cadastro</a>
                                     </div>
-                                    :
-                                    null
-                            }
+                                </Link>
+
+                                <Link
+                                    href='/userList'
+                                    className='flex items-center'
+                                >
+                                    <div style={{
+                                        marginLeft: '10px'
+                                    }}
+                                    >
+                                        <FontAwesomeIcon
+                                            className="mr-3"
+                                            icon={faList}
+                                        />
+
+                                        Lista
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </Link>
                 </li>
@@ -174,27 +188,56 @@ function NavMenu() {
                 <li
                     style={styles.menuItem}
                 >
-                    <Link href='userCrud' className='flex items-center'>
+                    <Link
+                        href='/'
+                        className='flex items-center'>
                         <div>
-                            <FontAwesomeIcon
-                                className="mr-3"
-                                icon={faPen}
-                            />
-                            <a>Cadastro de usuário</a>
-                        </div>
-                    </Link>
-                </li>
+                            <div
+                                onClick={() => setIsUserMenuTabOpen(!isUserMenuTabOpen)}
+                            >
+                                <FontAwesomeIcon
+                                    className="mr-3"
+                                    icon={faPen}
+                                />
+                                <a>Colaborador</a>
+                            </div>
 
-                <li
-                    style={styles.menuItem}
-                >
-                    <Link href='/' className='flex items-center'>
-                        <div>
-                            <FontAwesomeIcon
-                                className="mr-3"
-                                icon={faList}
-                            />
-                            <a>Lista de usuário</a>
+                            {/* options */}
+                            <div style={styles.menuSubItem}>
+                                <Link
+                                    href='/employeerCrud'
+                                    className='flex items-center'
+                                >
+                                    <div style={{
+                                        marginLeft: '10px'
+                                    }}
+                                    >
+                                        <FontAwesomeIcon
+                                            className="mr-1"
+                                            icon={faUserGear}
+                                        />
+
+                                        <a>Cadastro</a>
+                                    </div>
+                                </Link>
+
+                                <Link
+                                    href='/employeerList'
+                                    className='flex items-center'
+                                >
+                                    <div style={{
+                                        marginLeft: '10px'
+                                    }}
+                                    >
+                                        <FontAwesomeIcon
+                                            className="mr-3"
+                                            icon={faList}
+                                        />
+
+                                        Lista
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </Link>
                 </li>
@@ -209,6 +252,20 @@ function NavMenu() {
                             href='/AccessHistory'
                         >
                             <a>Histórico de acessos</a>
+                        </Link>
+                    </div>
+                </li>
+
+                <li style={styles.menuItem}>
+                    <div className="h-full">
+                        <FontAwesomeIcon
+                            className="mr-3"
+                            icon={faFileAlt}
+                        />
+                        <Link
+                            href='/reports'
+                        >
+                            <a>Relatórios</a>
                         </Link>
                     </div>
                 </li>

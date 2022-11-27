@@ -10,16 +10,44 @@ import Layout from '../components/Layout';
 import BreadCrumb from "../components/BreadCrumb";
 import Notification from "../components/Notification";
 
-// Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export default function UsersList() {
+
+const USERS_MOCk_DATA = [
+    {
+        name: 'Vinicius Guterres',
+        email: 'guter@yahoo.com',
+        sector: 'Engenharia',
+        access_level: 'Analista',
+        office_role: 'Programador full-stack Jr.',
+        birth_date: '08/01/2004 ',
+        actions: null
+    },
+    {
+        name: 'Felipe Senna',
+        email: 'felipe@yahoo.com',
+        sector: 'TI',
+        access_level: 'Administrador',
+        office_role: 'Gestor de TI.',
+        birth_date: '25/02/1988 ',
+        actions: null
+    },
+    {
+        name: 'Maria Eduarda',
+        email: 'maria@yahoo.com',
+        sector: 'ADM',
+        access_level: 'operacional',
+        office_role: 'Auxiliar financeiro.',
+        birth_date: '21/12/1988 ',
+        actions: null
+    }
+];
+
+export default function userList() {
     const [accessdata, setAccessData] = useState([]);
 
     // globals const
-    const authorizedAccessIcon = <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'green' }} />;
-    const unauthorizedAccessIcon = <FontAwesomeIcon icon={faBan} style={{ color: 'red' }} />;
 
     // Geting all access and set at the tableDatas
     useEffect(() => {
@@ -40,6 +68,35 @@ export default function UsersList() {
     function getAllAccessHistory() {
         getAllAccessData('http://localhost:3010/AccessHistory')
             .then(res => setAccessData(res))
+    }
+
+    function getData() {
+        return USERS_MOCk_DATA.map(item => {
+            item.actions = (
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '10px'
+                }}>
+                    <FontAwesomeIcon
+                        style={{ cursor: 'pointer', color: '#23699d' }}
+                        className="text-xl"
+                        icon={faPen}
+                    />
+
+                    <FontAwesomeIcon
+                        style={{ cursor: 'pointer', color: 'tomato' }}
+                        className="text-xl"
+                        icon={faTrash}
+                    />
+                </div>
+            );
+
+            // Setting the default values
+
+            return item;
+        })
     }
 
     /**
@@ -65,13 +122,6 @@ export default function UsersList() {
                 fullDate = dateFormatted.substring(0, 10);
                 hour = dateFormatted.substring(11, 19);
 
-                // set authorized access as icon for denied or allowed
-                if (data.authorized_access) {
-                    isAuthorizedAccess = authorizedAccessIcon;
-                } else {
-                    isAuthorizedAccess = unauthorizedAccessIcon;
-                }
-
                 return { fullDate: fullDate, hour: hour, collaborator_name: collaborator, isAuthorizedAccess: isAuthorizedAccess };
             });
         }
@@ -82,23 +132,35 @@ export default function UsersList() {
     const columns = useMemo(
         () => [
             {
-                Header: "Histórico de Acessos",
+                Header: "Usuários",
                 columns: [
                     {
-                        Header: "Data",
-                        accessor: "fullDate"
+                        Header: "Nome",
+                        accessor: "name"
                     },
                     {
-                        Header: "hora",
-                        accessor: "hour"
+                        Header: "Email",
+                        accessor: "email"
                     },
                     {
-                        Header: "Colaborador",
-                        accessor: "collaborator_name"
+                        Header: "Setor",
+                        accessor: "sector"
                     },
                     {
-                        Header: "Acesso autorizado",
-                        accessor: "isAuthorizedAccess"
+                        Header: "Nível de acesso",
+                        accessor: "access_level"
+                    },
+                    {
+                        Header: "Cargo",
+                        accessor: "office_role"
+                    },
+                    {
+                        Header: "Data de nascimento",
+                        accessor: "birth_date"
+                    },
+                    {
+                        Header: "Ações",
+                        accessor: "actions"
                     }
                 ]
             }
@@ -108,13 +170,6 @@ export default function UsersList() {
 
     return (
         <Layout>
-
-            <Notification
-                title={'Acesso permitido'}
-                subtitle='Acesso permitido'
-                type={'sucess'}
-            />
-
             <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <BreadCrumb
                     name='Lista de usuários'
@@ -122,7 +177,8 @@ export default function UsersList() {
                 />
                 <GenericTable
                     columns={columns}
-                    data={formatAccessData(accessdata)}
+                    // data={formatAccessData(accessdata)}
+                    data={getData(USERS_MOCk_DATA)}
                 />
             </div>
         </Layout>

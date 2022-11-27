@@ -23,5 +23,17 @@ create table usuarios (
 	nome varchar not null,
 	setor varchar not null,
 	nivel_de_acesso int NOT NULL,
-	senha varchar NOT NULL
+	senha varchar NOT NULL,
+	data_de_nascimento timestamp NOT NULL,
+	cargo varchar NOT NULL
+);
+
+create table usuarios (
+	id serial primary key,
+	nome varchar not null,
+	setor varchar not null,
+	nivel_de_acesso int NOT NULL,
+	senha varchar NOT NULL,
+	data_de_nascimento timestamp NOT NULL,
+	cargo varchar NOT NULL
 );

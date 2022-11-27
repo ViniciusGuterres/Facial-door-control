@@ -1,20 +1,13 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
-const usersRoutes = require('./routes/users');
+const app = express();
 const bodyParser = require('body-parser');
 
+require('./routes/index.js')(app);
+
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Working');
+app.listen(8080, () => {
+    console.log('Server on in port 8080');
 });
-
-usersRoutes(app);
-
-app.listen(3010, () => {
-    console.log('ok');
-})

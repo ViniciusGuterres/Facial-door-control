@@ -9,6 +9,8 @@ export default function userCrud() {
     const [employeeName, setEmployeeName] = useState('');
     const [employeeEmail, setEmployeeEmail] = useState('');
     const [employeeHaveAccess, setEmployeeHaveAccess] = useState(false);
+    const [employeeBirth, setEmployeeBirth] = useState(null);
+
     const [isShowingNotification, setIsShowingNotification] = useState(false);
 
     // Change inputs functions
@@ -47,6 +49,12 @@ export default function userCrud() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '20px'
+            },
+            fieldRowContainer: {
+                display: 'flex',
+                flexDirection: 'column',
+                height: 'auto',
+                gap: '10px'
             },
             inputsContainer: {
                 padding: '20px',
@@ -135,6 +143,39 @@ export default function userCrud() {
                         />
                     </div>
 
+
+                    {/* Birth date */}
+                    <div style={styles.fieldRowContainer}>
+                        <div >
+                            <label style={styles.labelDefaultStyle}>
+                                Data de nascimento
+                            </label>
+
+                            <input
+                                type="date"
+                                value={employeeBirth}
+                                onChange={event => handleChangeEmployeeBirthInput(event)}
+                                style={styles.inputDefaultStyle}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Office_role */}
+                    <div style={styles.fieldRowContainer}>
+                        <label
+                            style={styles.labelDefaultStyle}>
+                            Cargo
+                        </label>
+
+                        <input
+                            id="inline-full-name"
+                            type="text"
+                            placeholder="Insira o cargo"
+                            value={employeeName}
+                            onChange={event => handleChangeEmployeeNameInput(event)}
+                            style={styles.inputDefaultStyle}
+                        />
+                    </div>
 
                     {/* Setor */}
                     <div style={styles.fieldRowContainer}>
