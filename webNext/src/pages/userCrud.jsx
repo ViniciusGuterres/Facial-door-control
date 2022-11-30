@@ -7,6 +7,8 @@ import Notification from '../components/Notification';
 
 export default function userCrud() {
     const [employeeName, setEmployeeName] = useState('');
+    const [employeeRole, setEmployeeRole] = useState('');
+
     const [employeeEmail, setEmployeeEmail] = useState('');
     const [employeeHaveAccess, setEmployeeHaveAccess] = useState(false);
     const [employeeBirth, setEmployeeBirth] = useState(null);
@@ -22,6 +24,10 @@ export default function userCrud() {
         setEmployeeBirth(event.target.value);
     }
 
+    const handleChangeEmployeeRoleInput = event => {
+        setEmployeeRole(event.target.value);
+    }
+
     const handleChangeEmployeeEmailInput = event => {
         setEmployeeEmail(event.target.value);
     }
@@ -35,7 +41,6 @@ export default function userCrud() {
         setEmployeeBirth(null);
         setEmployeeEmail('');
         setEmployeeHaveAccess(false);
-        setPhotoMode(false);
         setIsShowingNotification(true);
     }
 
@@ -171,8 +176,8 @@ export default function userCrud() {
                             id="inline-full-name"
                             type="text"
                             placeholder="Insira o cargo"
-                            value={employeeName}
-                            onChange={event => handleChangeEmployeeNameInput(event)}
+                            value={employeeRole}
+                            onChange={event => handleChangeEmployeeRoleInput(event)}
                             style={styles.inputDefaultStyle}
                         />
                     </div>
