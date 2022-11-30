@@ -5,7 +5,10 @@ const bodyParser = require('body-parser');
 
 require('./routes/index.js')(app);
 
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
+
 app.use(bodyParser.json());
 
 app.listen(8080, () => {

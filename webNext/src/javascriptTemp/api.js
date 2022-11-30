@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+var config = {
+    headers: {'Access-Control-Allow-Origin': '*'}
+};
+
 /**
  * @function saveFormInputs
  * @summary - Will make a post or put http requisition using AXIOS
@@ -21,7 +25,10 @@ import axios from 'axios';
 //     axios['delete'](`${url}/${id}`)
 // }
 
-export async function getAllAccessData(url) {
-    return axios['get'](url)
-        .then(res => res.data)
+export async function getAllAccessData(url, config) {
+    return axios.get(url)
+        .then(res => {
+            console.log('data::', res.data)
+            return res.data;
+        })
 }

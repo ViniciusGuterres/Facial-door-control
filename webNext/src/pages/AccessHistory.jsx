@@ -14,9 +14,51 @@ import Notification from "../components/Notification";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
+const USERS_MOCk_DATA = [
+    {
+        date: '2022-11-28 19:20:28.000',
+        collaborator_name: 'Vinicius',
+        authorized_access: true,
+    },
+    {
+        date: '2022-11-28 17:20:28.000',
+        collaborator_name: 'Felipe',
+        authorized_access: true,
+    },
+    {
+        date: '2022-07-25 19:40:28.000',
+        collaborator_name: 'Roberto',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-25 19:20:28.000',
+        collaborator_name: 'Felipe',
+        authorized_access: true,
+    },
+    {
+        date: '2022-07-25 19:10:28.000',
+        collaborator_name: 'Maria',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-25 12:20:28.000',
+        collaborator_name: 'Luiz',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-25 07:20:28.000',
+        collaborator_name: 'Roberval',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-21 22:20:28.000',
+        collaborator_name: 'Felipe',
+        authorized_access: true,
+    }
+];
+
 export default function AccessHistory() {
-    const [accessdata, setAccessData] = useState([]);
-    console.log("🚀 ~ file: AccessHistory.jsx ~ line 19 ~ AccessHistory ~ accessdata", accessdata)
+    const [accessdata, setAccessData] = useState(USERS_MOCk_DATA);
 
     // globals const
     const authorizedAccessIcon = <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'green' }} />;
@@ -39,7 +81,7 @@ export default function AccessHistory() {
      * @summary fetch the access data and set it at the state
      */
     function getAllAccessHistory() {
-        getAllAccessData('http://localhost:3010/AccessHistory')
+        getAllAccessData('http://localhost:8080/AccessHistory')
             .then(res => setAccessData(res))
     }
 
@@ -123,6 +165,7 @@ export default function AccessHistory() {
                 />
                 <GenericTable
                     columns={columns}
+                    // data={formatAccessData(accessdata)}
                     data={formatAccessData(accessdata)}
                 />
             </div>
