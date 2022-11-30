@@ -32,3 +32,11 @@ export async function getAllAccessData(url, config) {
             return res.data;
         })
 }
+
+export async function generatedReportCont(url, body) {
+    return axios.get(url)
+        .then(res => {
+            console.log('data::', res.data)
+            return res.data;
+        })
+}

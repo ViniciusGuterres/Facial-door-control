@@ -5,7 +5,59 @@ import BreadCrumb from "../components/BreadCrumb";
 import Layout from '../components/Layout';
 import Notification from '../components/Notification';
 
+import { generatedReportCont } from '../javascriptTemp/api';
+
+import PDFReport from '../components/PDFReport.jsx';
+
+const USERS_MOCk_DATA = [
+    {
+        date: '2022-11-28 19:20:28.000',
+        collaborator_name: 'Vinicius',
+        authorized_access: true,
+    },
+    {
+        date: '2022-11-28 17:20:28.000',
+        collaborator_name: 'Felipe',
+        authorized_access: true,
+    },
+    {
+        date: '2022-07-25 19:40:28.000',
+        collaborator_name: 'Roberto',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-25 19:20:28.000',
+        collaborator_name: 'Felipe',
+        authorized_access: true,
+    },
+    {
+        date: '2022-07-25 19:10:28.000',
+        collaborator_name: 'Maria',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-25 12:20:28.000',
+        collaborator_name: 'Luiz',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-25 07:20:28.000',
+        collaborator_name: 'Roberval',
+        authorized_access: false,
+    },
+    {
+        date: '2022-07-21 22:20:28.000',
+        collaborator_name: 'Felipe',
+        authorized_access: true,
+    }
+];
+
 export default function reports() {
+    const [initDate, setInitDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [isShowingReport, setIsShowingReport] = useState(false);
+    const [reportData, setReportData] = useState([]);
+
     const styles = {
         formContainer: {
             width: '500px',
@@ -46,6 +98,66 @@ export default function reports() {
         },
     }
 
+    const handleChangeInitDate = (event) => {
+        const value = event.target.value;
+
+        setInitDate(value);
+    };
+
+    const handleChangeEndDate = (event) => {
+        const value = event.target.value;
+
+        setEndDate(value);
+    };
+
+    const generatedReport = () => {
+        setIsShowingReport(true);
+
+        generatedReportCont('http://localhost:8080/generatedAccessReport', { initDate, endDate })
+            .then(res => {
+                console.log('response::: ', res);
+            });
+    }
+
+    const buildForm = (
+        <form style={styles.formContainer}>
+            <label style={styles.labelDefaultStyle}>
+                Data início do relatório
+            </label>
+            <input
+                type="date"
+                value={initDate}
+                onChange={event => handleChangeInitDate(event)}
+                style={styles.inputDefaultStyle}
+            />
+
+            <label style={styles.labelDefaultStyle}>
+                Data fim do relatório
+            </label>
+
+            <input
+                type="date"
+                value={endDate}
+                onChange={event => handleChangeEndDate(event)}
+                style={styles.inputDefaultStyle}
+            />
+
+
+            {/* Submit button */}
+            <div style={styles.buttonContainer}>
+                <button
+                    type="button"
+                    style={styles.buttonDefaultStyle}
+                    onClick={() => {
+                        generatedReport()
+                    }}
+                >
+                    Gerar relatório
+                </button>
+            </div>
+        </form>
+    );
+
     return (
         <Layout>
             <div style={{ width: '100%' }}>
@@ -55,42 +167,15 @@ export default function reports() {
                 />
 
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <form style={styles.formContainer}>
-                        <label style={styles.labelDefaultStyle}>
-                            Data início do relatório
-                        </label>
-                        <input
-                            type="date"
-                            value={''}
-                            onChange={event => handleChangeEmployeeBirthInput(event)}
-                            style={styles.inputDefaultStyle}
-                        />
-
-                        <label style={styles.labelDefaultStyle}>
-                            Data fim do relatório
-                        </label>
-
-                        <input
-                            type="date"
-                            value={''}
-                            onChange={event => handleChangeEmployeeBirthInput(event)}
-                            style={styles.inputDefaultStyle}
-                        />
-
-
-                        {/* Submit button */}
-                        <div style={styles.buttonContainer}>
-                            <button
-                                type="button"
-                                style={styles.buttonDefaultStyle}
-                                onClick={() => {
-                                    saveUser()
-                                }}
-                            >
-                                Gerar relatório
-                            </button>
-                        </div>
-                    </form>
+                    {
+                        isShowingReport
+                            ?
+                            < PDFReport
+                                data={USERS_MOCk_DATA}
+                            />
+                            :
+                            buildForm
+                    }
                 </div>
             </div>
         </Layout>
