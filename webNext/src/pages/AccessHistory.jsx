@@ -58,7 +58,7 @@ const USERS_MOCk_DATA = [
 ];
 
 export default function AccessHistory() {
-    const [accessdata, setAccessData] = useState(USERS_MOCk_DATA);
+    const [accessdata, setAccessData] = useState([]);
 
     // globals const
     const authorizedAccessIcon = <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'green' }} />;

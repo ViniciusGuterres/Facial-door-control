@@ -115,6 +115,7 @@ export default function reports() {
 
         generatedReportCont('http://localhost:8080/generatedAccessReport', { initDate, endDate })
             .then(res => {
+                setReportData(res);
                 console.log('response::: ', res);
             });
     }
@@ -171,7 +172,7 @@ export default function reports() {
                         isShowingReport
                             ?
                             < PDFReport
-                                data={USERS_MOCk_DATA}
+                                data={reportData}
                             />
                             :
                             buildForm
